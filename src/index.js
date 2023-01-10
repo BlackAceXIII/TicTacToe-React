@@ -7,6 +7,18 @@ class Square extends React.Component {
     super(props);
     this.state = { value:null, };
   }
+
+  render() {
+    return (
+      <button
+       className="square"
+       onClick={() => this.setState({value: 'X'})}
+      >
+        {this.state.value}
+      </button> 
+    );
+  }
+    /*
     render() {
       return (
         <button className="square" onClick={function() { console.log('click'); }}>
@@ -14,6 +26,7 @@ class Square extends React.Component {
         </button> //Can use onClick={() => console.log('click') instead of what is there
       );
     }
+    */
   }
   
   class Board extends React.Component {
