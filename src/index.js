@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
+/* This entire class is being replaced by a function (01/11/2023)
 class Square extends React.Component {
-  /*
+  
   constructor(props){
     super(props);
     this.state = { value:null, };
   }
-  */
-
+  
   render() {
     return (
       <button
@@ -18,29 +18,45 @@ class Square extends React.Component {
       >
         {this.props.value}
       </button> 
+      //This render was replacing the render below it (1/10/2023)
     );
   }
-    /*
+    
     render() {
       return (
         <button className="square" onClick={function() { console.log('click'); }}>
           {this.props.value}
         </button> //Can use onClick={() => console.log('click') instead of what is there
       );
+      //This render was replaced by the render above it (01/10/2023)
     }
-    */
+    
+  }
+*/
+  function Square(props) {     //(01/11/2023)
+    return (
+      <button className='square' onClick={props.onClick}>
+        {props.value}
+      </button>
+    )
   }
   
   class Board extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { squares: Array(9).fill(null), };
+      this.state = { 
+        squares: Array(9).fill(null), //(01/10/2023)
+        xIsNext: true, //(01/11/2023)
+      };
     }
     
     handleClick(i) {
       const squares = this.state.squares.slice();
-      squares[i] = 'X';
-      this.setState({squares: squares});
+      squares[i] = this.state.xIsNext ? 'X' : 'O';//(01/11/2023)
+      this.setState({
+        squares: squares,
+        xIsNext: !this.state.xIsNext, //(01/11/2023)
+      });
     }
 
 
