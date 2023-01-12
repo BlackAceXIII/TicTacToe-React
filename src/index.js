@@ -38,7 +38,7 @@ class Square extends React.Component {
       <button className='square' onClick={props.onClick}>
         {props.value}
       </button>
-    )
+    );
   }
   
   class Board extends React.Component {
@@ -74,6 +74,7 @@ class Square extends React.Component {
     }
   
     render() {
+      /*
       const winner = calculateWinner(this.state.squares);
       let status;
       if (winner) {
@@ -81,6 +82,7 @@ class Square extends React.Component {
       } else {
         status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
       }
+      */
       /*  const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       Alternative way to format line 71
       (01/11/2023)
@@ -133,17 +135,17 @@ class Square extends React.Component {
         }]),
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext,
-      })
+      });
     }
     jumpTo(step) { //to jump to previous game states
       this.setState({
         stepNumber: step,
         xIsNext: (step % 2) === 0,
-      })
+      });
     }
     render() {
       const history = this.state.history;
-      const current = history[this.step.stepNumber];
+      const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
 
       const moves = history.map((step, move) => {
