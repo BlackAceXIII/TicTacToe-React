@@ -52,6 +52,9 @@ class Square extends React.Component {
     
     handleClick(i) {
       const squares = this.state.squares.slice();
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
       squares[i] = this.state.xIsNext ? 'X' : 'O';//(01/11/2023)
       this.setState({
         squares: squares,
@@ -68,7 +71,13 @@ class Square extends React.Component {
     }
   
     render() {
-      const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+      const winner = calculateWinner(this.state.squares);
+      let status;
+      if (winner) {
+        status = `Winner: ` + winner;
+      } else {
+        status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+      }
       /*  const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       Alternative way to format line 71
       (01/11/2023)
